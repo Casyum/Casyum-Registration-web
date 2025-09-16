@@ -310,6 +310,7 @@
             color: #d6e0f0;
         }
 
+        /* Tablet */
         @media (max-width: 768px) {
             .modal-rulebook {
                 width: 90%;
@@ -332,6 +333,48 @@
             
             .wordmark-logo {
                 height: 60px;
+            }
+
+            .hero p {
+                font-size: 18px;
+                padding: 0 15px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .topbar-inner {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .register-btn, .download-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                margin: 5px;
+            }
+
+            .events-title {
+                font-size: 1.8rem;
+            }
+
+            .event-title {
+                font-size: 1.2rem;
+            }
+
+            .event-content {
+                padding: 15px;
+            }
+
+            .hero p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            footer {
+                font-size: 0.85rem;
+                padding: 20px 0;
             }
         }
     </style>
@@ -365,9 +408,7 @@
 
         <h2 class="events-title">SYMPOSIUM EVENTS</h2>
 
-        <div class="events-grid" id="events-grid">
-            <!-- Events populated by JavaScript -->
-        </div>
+        <div class="events-grid" id="events-grid"></div>
     </div>
 
     <div class="modal" id="eventModal">
@@ -378,9 +419,7 @@
             </div>
             <div class="modal-rulebook" id="modalRulebook">Tap to get Rulebook</div>
             <div class="modal-info">
-                <div class="event-details-horizontal" id="eventDetailsHorizontal">
-                    <!-- Event details will be injected here -->
-                </div>
+                <div class="event-details-horizontal" id="eventDetailsHorizontal"></div>
             </div>
         </div>
     </div>
@@ -391,138 +430,18 @@
 
     <script>
         const events = [
-            {
-                id: 1,
-                title: "Debugging",
-                thumbnail: "assets/de_t.jpg",
-               
-                rulebook: "rules/de-r.png",
-                fee: "₹50",
-                time: "10:30 AM - 12:30 PM",
-                participants: "Team of 2",
-                
-                
-            },
-            {
-                id: 2,
-                title: "Tech Quiz",
-                thumbnail: "assets/tq_t.jpg",
-                
-                rulebook: "rules/tq-r.png",
-                fee: "₹50",
-                time: "12.30 PM - 2.00 PM ",
-                participants: "2-4",
-                
-                
-            },
-            {
-                id: 3,
-                title: "Paper Presentation",
-                thumbnail: "assets/pp_t.jpg",
-                
-                rulebook: "rules/pp-r.png",
-                fee: "₹50",
-                time: "10:30 AM - 12:30 PM",
-                participants: "3-4",
-                
-            },
-            {
-                id: 4,
-                title: "Hackathon",
-                thumbnail: "assets/hack_t.jpg",
-                
-                rulebook: "rules/hack-r.png",
-                fee: "₹50",
-                time: "10:30 AM-12:30 PM",
-                participants: "Team of 2",
-                
-            },
-            {
-                id: 5,
-                title: "Poster Designing",
-                thumbnail: "assets/pd_t.jpg",
-                
-                rulebook: "rules/pd-r.png",
-                fee: "₹50",
-                time: "12:30 PM - 2:00 PM",
-                participants: "Individual",
-                
-            },
-            {
-                id: 6,
-                title: "BGMI",
-                thumbnail: "assets/bgmi_t.jpg",
-               
-                rulebook: "rules/bgmi-r.png",
-                fee: "₹250",
-                time: "12:30 PM - 2:00 PM",
-                participants: "Team of 4",
-                
-            },
-            {
-                id: 7,
-                title: "Free Fire",
-                thumbnail: "assets/ff_t.jpg",
-                
-                rulebook: "rules/ff-r.png",
-                fee: "₹250",
-                time: "12:30 PM - 2:00 PM",
-                participants: "Team of 4",
-                
-            },
-            {
-                id: 8,
-                title: "Smash Karts",
-                thumbnail: "assets/sk_t.jpg",
-                
-                rulebook: "rules/sk-r.png",
-                fee: "₹50",
-                time: "1:30 PM - 2:00 PM",
-                participants: "Individual",
-               
-            },
-            {
-                id: 9,
-                title: "Connection",
-                thumbnail: "assets/con_t.jpg",
-                
-                rulebook: "rules/con-r.png",
-                fee: "₹50",
-                time: "10:00 AM - 11:30 AM",
-                participants: "2-3",
-                
-            },
-            {
-                id: 10,
-                title: "Short Film",
-                thumbnail: "assets/sf_t.jpg",
-                
-                rulebook: "rules/sf-r.png",
-                fee: "₹50",
-                time: "12:30 pM - 2:00 PM",
-                participants: "Individual",
-                
-            },
-            {
-                id: 11,
-                title: "Ad-Zap",
-                thumbnail: "assets/ad_t.jpg",
-                rulebook: "rules/ad-r.png",
-                fee: "₹50",
-                time: "10:30 AM - 12:00 PM",
-                participants: "Team of 3-4",
-                
-            },
-            {
-                id: 12,
-                title: "Photography",
-                thumbnail: "assets/photo_t.jpg",
-                rulebook: "rules/pg-r.png",
-                fee: "₹50",
-                time: "12:00 PM - 12:30 PM",
-                participants: "Individual",
-                
-            }
+            {id:1,title:"Debugging",thumbnail:"assets/de_t.jpg",rulebook:"rules/de-r.png",fee:"₹50",time:"10:30 AM - 12:30 PM",participants:"Team of 2"},
+            {id:2,title:"Tech Quiz",thumbnail:"assets/tq_t.jpg",rulebook:"rules/tq-r.png",fee:"₹50",time:"12.30 PM - 2.00 PM ",participants:"2-4"},
+            {id:3,title:"Paper Presentation",thumbnail:"assets/pp_t.jpg",rulebook:"rules/pp-r.png",fee:"₹50",time:"10:30 AM - 12:30 PM",participants:"3-4"},
+            {id:4,title:"Hackathon",thumbnail:"assets/hack_t.jpg",rulebook:"rules/hack-r.png",fee:"₹50",time:"10:30 AM-12:30 PM",participants:"Team of 2"},
+            {id:5,title:"Poster Designing",thumbnail:"assets/pd_t.jpg",rulebook:"rules/pd-r.png",fee:"₹50",time:"12:30 PM - 2:00 PM",participants:"Individual"},
+            {id:6,title:"BGMI",thumbnail:"assets/bgmi_t.jpg",rulebook:"rules/bgmi-r.png",fee:"₹250",time:"12:30 PM - 2:00 PM",participants:"Team of 4"},
+            {id:7,title:"Free Fire",thumbnail:"assets/ff_t.jpg",rulebook:"rules/ff-r.png",fee:"₹250",time:"12:30 PM - 2:00 PM",participants:"Team of 4"},
+            {id:8,title:"Smash Karts",thumbnail:"assets/sk_t.jpg",rulebook:"rules/sk-r.png",fee:"₹50",time:"1:30 PM - 2:00 PM",participants:"Individual"},
+            {id:9,title:"Connection",thumbnail:"assets/con_t.jpg",rulebook:"rules/con-r.png",fee:"₹50",time:"10:00 AM - 11:30 AM",participants:"2-3"},
+            {id:10,title:"Short Film",thumbnail:"assets/sf_t.jpg",rulebook:"rules/sf-r.png",fee:"₹50",time:"12:30 pM - 2:00 PM",participants:"Individual"},
+            {id:11,title:"Ad-Zap",thumbnail:"assets/ad_t.jpg",rulebook:"rules/ad-r.png",fee:"₹50",time:"10:30 AM - 12:00 PM",participants:"Team of 3-4"},
+            {id:12,title:"Photography",thumbnail:"assets/photo_t.jpg",rulebook:"rules/pg-r.png",fee:"₹50",time:"12:00 PM - 12:30 PM",participants:"Individual"}
         ];
 
         const eventsGrid = document.getElementById("events-grid");
@@ -548,42 +467,30 @@
             button.addEventListener("click", () => {
                 modalTitle.textContent = event.title;
                 modalRulebook.style.backgroundImage = `url('${event.thumbnail}')`;
-
-                modalRulebook.onclick = () => {
-                    window.open(event.rulebook,'_blank');
-                };
-
+                modalRulebook.onclick = () => { window.open(event.rulebook,'_blank'); };
                 eventDetailsHorizontal.innerHTML = `
                     <div class="detail-item">
-                        <div class="detail-icon"><i class="fas fa-ticket-alt"></i></div>
-                        <div class="detail-label">REGISTRATION FEE</div>
+                        <div class="detail-icon"><i class="fas fa-money-bill-wave"></i></div>
+                        <div class="detail-label">Entry Fee</div>
                         <div class="detail-value">${event.fee}</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-icon"><i class="fas fa-clock"></i></div>
-                        <div class="detail-label">TIMING</div>
+                        <div class="detail-label">Time</div>
                         <div class="detail-value">${event.time}</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-icon"><i class="fas fa-users"></i></div>
-                        <div class="detail-label">PARTICIPANTS</div>
+                        <div class="detail-label">Participants</div>
                         <div class="detail-value">${event.participants}</div>
                     </div>
                 `;
-
                 modal.style.display = "block";
             });
         });
 
-        closeModal.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
-
-        window.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                modal.style.display = "none";
-            }
-        });
+        closeModal.addEventListener("click", () => { modal.style.display = "none"; });
+        window.addEventListener("click", (e) => { if(e.target == modal){ modal.style.display = "none"; }});
     </script>
 </body>
 </html>
